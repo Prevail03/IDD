@@ -82,7 +82,7 @@ $scheme_code = $_SESSION['scheme_code'];
         if (isset($_POST['form_name']) && $_POST['form_name'] === "update_payroll") {
             $insert_id = $_POST['insert_id'];
             $account_number = trim($_POST['account_number']); 
-            $bank_code = trim($_POST['bank_code']); 
+            $bank_code = !empty($_POST['bank_code']) ? intval($_POST['bank_code']) : null; 
             $gross_after_deductions = !empty($_POST['gross_after_deductions']) ? floatval($_POST['gross_after_deductions']) : 0.00; 
             $updated_at = date('Y-m-d H:i:s'); 
             $sql = "UPDATE MYDB.DBO.idd_payroll SET account_number = ?, bank_code = ?, gross_after_deductions = ? , updated_at = ?, updated_by = ? WHERE insert_id = ?"; 
